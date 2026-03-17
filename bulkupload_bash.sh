@@ -1,8 +1,3 @@
-API_TOKEN=“YOUR API TOKEN
-HOSTNAME="https://demo.borealisdata.ca"
-DATAVERSE_ALIAS="YOUR DATAVERSE ALIAS"
-DIRECTORY="LOCAL DIRECTORY"
-WAIT=0
 
 for datasetDir in "$DIRECTORY"/* ; do
     echo "Creating the dataset from $datasetDir ..."
