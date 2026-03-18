@@ -1,98 +1,146 @@
 
 # Borealis Bulk Dataset Uploader
 
-This Bash script automates the creation of datasets and the upload of associated files to a **Borealis Dataverse** instance. It processes multiple local directories, reads dataset metadata, creates datasets via the Borealis API, and uploads the corresponding ZIP file for each dataset.
+A fully guided beginner-friendly reference for using `bulkupload_bash.sh` to upload multiple datasets into Borealis Dataverse.
+
+This Bash script does three main actions per dataset folder:
+1. Ensures each dataset JSON includes a contact email entry (`datasetContactEmail`).
+2. Creates a dataset in your Dataverse using dataset metadata (without the `files` block).
+3. Uploads `files.zip` for that dataset using Dataverse SWORDv2 upload API.
 
 ---
 
-## Features
+## What this repository contains
 
-- Automatically reads metadata from `metadata.json` in each dataset folder.
-- Removes the `files` section from the JSON before dataset creation.
-- Creates a new dataset in the specified Dataverse.
-- Uploads a `files.zip` archive associated with each dataset.
-- Extracts and displays the DOI of the created dataset.
-- Skips file upload if dataset creation fails.
+- `bulkupload_bash.sh`: main script that processes dataset folders in `Datasets/`.
+- `Datasets/`: each subfolder is one dataset package.
+
+### Expected dataset directory layout (keep this figure):
+
+```
+Datasets/
+  dataset1/
+    metadata.json   # dataset metadata with citation + author + fields, etc.
+    files.zip       # zipped payload of files to attach to dataset
+  dataset2/
+    metadata.json
+    files.zip
+  dataset3/
+    metadata.json
+    files.zip
+
+```
+
+- `metadata.json` is used for dataset creation via API.
+- `files.zip` is uploaded after dataset creation.
 
 ---
 
-## Prerequisites
+## Prerequisites (very beginner-friendly)
 
-- Bash shell
-- [`jq`](https://stedolan.github.io/jq/) for JSON manipulation
-- `curl` for API requests
+1. Linux/MacOS terminal access.
+2. Bash shell (default on most systems).
+3. Install `jq` and `curl`.
 
-**Install `jq` on Ubuntu/Debian:**
+Ubuntu/Debian:
 
+```bash
 sudo apt update
+sudo apt install -y jq curl
+```
 
-sudo apt install jq 
+macOS (Homebrew):
 
-**Install jq on macOS:**
+```bash
+brew install jq curl
+```
 
-brew install jq
+Verify both are installed with:
+
+```bash
+jq --version
+curl --version
+```
 
 ---
 
-## Usage
+## Setup (best practice for new users)
 
-**1. Clone this repository:**
+1. Clone this project:
 
+```bash
 git clone https://github.com/YOUR_USERNAME/borealis-bulk-uploader.git
+cd BulkLoadData_bash
+```
 
-cd borealis-bulk-uploader
+2. Put your datasets under `Datasets/`:
 
-**2. Prepare your local directories:**
-LOCAL_DIRECTORY/
+- One folder per dataset (e.g. `Datasets/dataset1/`).
+- Required files in each folder: `metadata.json`, `files.zip`.
 
- ├── Dataset1/
+3. Open `bulkupload_bash.sh` with a text editor and set your API info:
 
-    ├── metadata.json
-
-    └── files.zip
-
- ├── Dataset2/
-
-     ├── metadata.json
-
-     └── files.zip
-
- └── ...
-
-Each dataset folder must contain:
-
-- metadata.json → Dataset metadata
-- files.zip → ZIP archive of dataset files
-
-**3. Update the script variables:**
-
+```bash
 API_TOKEN="YOUR_API_TOKEN"
-
-HOSTNAME="https://demo.borealisdata.ca"
-
+HOSTNAME="https://demo.borealisdata.ca"               # or your Borealis host
 DATAVERSE_ALIAS="YOUR_DATAVERSE_ALIAS"
-
-DIRECTORY="LOCAL_DIRECTORY"
-
+DIRECTORY="Datasets"                                  # where dataset folders live
 WAIT=0
+CONTACT_EMAIL="your.contact@example.com"              # used for dataset contact field
+```
 
-**4. Run the script:**
-./bulkloaddata.sh
+4. Make sure `bulkupload_bash.sh` is executable:
 
-**5. Output:**
-- Dataset creation response
-
-- Extracted DOI
-
-- Upload status
-
-
-
----
-## Alternative Usage (Easy way)
-
-Copy and paste the Bash script into your terminal, after filling in your required information.
+```bash
+chmod +x bulkupload_bash.sh
+```
 
 ---
 
-### This Bash script was developed with reference to the following GitHub script: https://github.com/kaitlinnewson/dataverse-tools/blob/master/bulkloaddata.sh
+## Run the script
+
+```bash
+./bulkupload_bash.sh
+```
+
+What happens during run:
+- Script loops `for datasetDir in "$DIRECTORY"/*`.
+- Calls `add_dataset_contact_email` to add or reuse `datasetContactEmail` in metadata.
+- Sends `POST /api/dataverses/$DATAVERSE_ALIAS/datasets/?key=$API_TOKEN` with metadata minus `datasetVersion.files`.
+- Reads the response, extracts `DOI`.
+- If DOI exists, uploads `files.zip` to `/dvn/api/data-deposit/v1.1/swordv2/edit-media/study/$DOI`.
+- Logs status for each dataset and continues next dataset.
+
+---
+
+## Post-run verification
+
+- If upload is successful, you should see output lines like:
+  - `Response: ...` (API JSON)
+  - `Extracted DOI: doi:10...`
+  - `Done with Datasets/dataset1`
+
+- Verify on the Dataverse UI using the DOI.
+
+---
+
+## Troubleshooting
+
+- `❌ Metadata file not found`: confirm `metadata.json` exists in each dataset folder.
+- `❌ No DOI found`: dataset creation failed (check API token, hostname, metadata validity).
+- `curl: (6) Could not resolve host`: wrong `HOSTNAME` or network issues.
+
+---
+
+## Notes
+
+- `metadata.json` must be valid JSON and have the `datasetVersion` block the script expects.
+- The script removes `datasetVersion.files` before dataset creation to avoid metadata upload conflict.
+
+---
+
+## Reference
+
+Original inspiration:
+https://github.com/kaitlinnewson/dataverse-tools/blob/master/bulkloaddata.sh
+

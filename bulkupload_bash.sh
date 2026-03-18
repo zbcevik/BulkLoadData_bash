@@ -1,10 +1,48 @@
-API_TOKEN=“YOUR API TOKEN
+echo "🚀 Starting bulkupload_bash.sh"
+API_TOKEN="40fac471-f5ef-4408-88b3-0cf69e6a6f2c"
 HOSTNAME="https://demo.borealisdata.ca"
-DATAVERSE_ALIAS="YOUR DATAVERSE ALIAS"
-DIRECTORY="LOCAL DIRECTORY"
+DATAVERSE_ALIAS="zeynepcevik"
+DIRECTORY="Datasets"
 WAIT=0
+CONTACT_EMAIL="${CONTACT_EMAIL:-zeynep.cevik@utoronto.ca}"
+
+add_dataset_contact_email() {
+    local metadata_file="$1"
+    local email="$2"
+
+    if [ ! -f "$metadata_file" ]; then
+        echo "❌ Metadata file not found: $metadata_file"
+        return 1
+    fi
+
+    local tmp_file
+    tmp_file=$(mktemp)
+
+    jq --arg email "$email" '
+      .datasetVersion.metadataBlocks.citation.fields |=
+      map(
+        if .typeName == "datasetContact" and .typeClass == "compound" then
+          .value |= map(
+            if has("datasetContactEmail") then
+              .
+            else
+              . + {"datasetContactEmail": {"typeName": "datasetContactEmail", "multiple": false, "typeClass": "primitive", "value": $email}}
+            end
+          )
+        else
+          .
+        end
+      )
+    ' "$metadata_file" > "$tmp_file" && mv "$tmp_file" "$metadata_file"
+}
 
 for datasetDir in "$DIRECTORY"/* ; do
+    echo "Preparing $datasetDir ..."
+    if ! add_dataset_contact_email "$datasetDir/metadata.json" "$CONTACT_EMAIL"; then
+        echo "⚠️ Skipping $datasetDir due to metadata update failure"
+        continue
+    fi
+
     echo "Creating the dataset from $datasetDir ..."
     OUTPUT=$(jq 'del(.datasetVersion.files)' "$datasetDir/metadata.json" | \
           curl -s -X POST -H "Content-type:application/json" \

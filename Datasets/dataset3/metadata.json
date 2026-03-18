@@ -1,0 +1,531 @@
+{
+  "id": 62625,
+  "identifier": "FK2/ZIJHDS",
+  "persistentUrl": "https://doi.org/10.80240/FK2/ZIJHDS",
+  "protocol": "doi",
+  "authority": "10.80240",
+  "separator": "/",
+  "publisher": "Borealis",
+  "publicationDate": "2026-01-14",
+  "storageIdentifier": "s3://10.80240/FK2/ZIJHDS",
+  "datasetType": "dataset",
+  "datasetVersion": {
+    "id": 10102,
+    "datasetId": 62625,
+    "datasetPersistentId": "doi:10.80240/FK2/ZIJHDS",
+    "datasetType": "dataset",
+    "storageIdentifier": "s3://10.80240/FK2/ZIJHDS",
+    "versionNumber": 1,
+    "internalVersionNumber": 32,
+    "versionMinorNumber": 1,
+    "versionState": "RELEASED",
+    "latestVersionPublishingState": "RELEASED",
+    "UNF": "UNF:6:uzG3raBPZ6Y9W95lFd13yg==",
+    "lastUpdateTime": "2026-02-03T20:16:19Z",
+    "releaseTime": "2026-02-03T20:16:19Z",
+    "createTime": "2026-02-03T19:47:17Z",
+    "publicationDate": "2026-01-14",
+    "license": {
+      "name": "CC0 1.0",
+      "uri": "http://creativecommons.org/publicdomain/zero/1.0",
+      "iconUri": "https://licensebuttons.net/p/zero/1.0/88x31.png",
+      "rightsIdentifier": "CC0-1.0",
+      "rightsIdentifierScheme": "SPDX",
+      "schemeUri": "https://spdx.org/licenses/",
+      "languageCode": "en"
+    },
+    "fileAccessRequest": true,
+    "metadataBlocks": {
+      "citation": {
+        "displayName": "Citation Metadata",
+        "name": "citation",
+        "fields": [
+          {
+            "typeName": "title",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "dataset3_Mar26_bulkupload3"
+          },
+          {
+            "typeName": "subtitle",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "1900-1940"
+          },
+          {
+            "typeName": "alternativeTitle",
+            "multiple": true,
+            "typeClass": "primitive",
+            "value": [
+              "History of Canada"
+            ]
+          },
+          {
+            "typeName": "otherId",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "otherIdAgency": {
+                  "typeName": "otherIdAgency",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "XMB"
+                }
+              },
+              {
+                "otherIdAgency": {
+                  "typeName": "otherIdAgency",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "UMB"
+                }
+              },
+              {
+                "otherIdAgency": {
+                  "typeName": "otherIdAgency",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "HELP"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "author",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "authorName": {
+                  "typeName": "authorName",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Cevik,Zeynep"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "datasetContact",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "datasetContactName": {
+                  "typeName": "datasetContactName",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Cevik, Zeynep"
+                },
+                "datasetContactAffiliation": {
+                  "typeName": "datasetContactAffiliation",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "University of Toronto"
+                },
+                "datasetContactEmail": {
+                  "typeName": "datasetContactEmail",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "zeynep.cevik@utoronto.ca"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "dsDescription",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "dsDescriptionValue": {
+                  "typeName": "dsDescriptionValue",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "L'histoire du Canada est assez longue, mais relativement courte!"
+                },
+                "dsDescriptionDate": {
+                  "typeName": "dsDescriptionDate",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "2025-11-08"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "subject",
+            "multiple": true,
+            "typeClass": "controlledVocabulary",
+            "value": [
+              "Social Sciences"
+            ]
+          },
+          {
+            "typeName": "keyword",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "keywordValue": {
+                  "typeName": "keywordValue",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Hello"
+                },
+                "keywordVocabulary": {
+                  "typeName": "keywordVocabulary",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "StatCan"
+                }
+              },
+              {
+                "keywordValue": {
+                  "typeName": "keywordValue",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "World"
+                },
+                "keywordVocabulary": {
+                  "typeName": "keywordVocabulary",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Federal Agency"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "topicClassification",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "topicClassValue": {
+                  "typeName": "topicClassValue",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Histoire Nationale"
+                },
+                "topicClassVocab": {
+                  "typeName": "topicClassVocab",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Statistics Canada"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "notesText",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "Veuillez consulter le guide en ligne"
+          },
+          {
+            "typeName": "language",
+            "multiple": true,
+            "typeClass": "controlledVocabulary",
+            "value": [
+              "French"
+            ]
+          },
+          {
+            "typeName": "producer",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "producerName": {
+                  "typeName": "producerName",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Wong, Ada"
+                },
+                "producerAffiliation": {
+                  "typeName": "producerAffiliation",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Umbrella Corporation"
+                },
+                "producerAbbreviation": {
+                  "typeName": "producerAbbreviation",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "UC"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "productionPlace",
+            "multiple": true,
+            "typeClass": "primitive",
+            "value": [
+              "Raccoon City"
+            ]
+          },
+          {
+            "typeName": "contributor",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "contributorType": {
+                  "typeName": "contributorType",
+                  "multiple": false,
+                  "typeClass": "controlledVocabulary",
+                  "value": "Funder"
+                },
+                "contributorName": {
+                  "typeName": "contributorName",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Wesker, Albert"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "grantNumber",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "grantNumberAgency": {
+                  "typeName": "grantNumberAgency",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "3609809"
+                },
+                "grantNumberValue": {
+                  "typeName": "grantNumberValue",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "10 million CAD"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "distributor",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "distributorName": {
+                  "typeName": "distributorName",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Letendre, Thierry"
+                },
+                "distributorAffiliation": {
+                  "typeName": "distributorAffiliation",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "University of Toronto"
+                },
+                "distributorAbbreviation": {
+                  "typeName": "distributorAbbreviation",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "UofT"
+                },
+                "distributorURL": {
+                  "typeName": "distributorURL",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "https://docs.google.com/spreadsheets/d/1avBZdgDN3BLKwB0gu88gfNxKTT79bHNSH46l4g_Lls0/edit?gid=0#gid=0"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "depositor",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "Letendre, Thierry"
+          },
+          {
+            "typeName": "dateOfDeposit",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "2025-12-15"
+          },
+          {
+            "typeName": "timePeriodCovered",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "timePeriodCoveredStart": {
+                  "typeName": "timePeriodCoveredStart",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "2025-09"
+                },
+                "timePeriodCoveredEnd": {
+                  "typeName": "timePeriodCoveredEnd",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "2025-12"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "dateOfCollection",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "dateOfCollectionStart": {
+                  "typeName": "dateOfCollectionStart",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "2020-09-12"
+                },
+                "dateOfCollectionEnd": {
+                  "typeName": "dateOfCollectionEnd",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "2023-10-29"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "kindOfData",
+            "multiple": true,
+            "typeClass": "primitive",
+            "value": [
+              "Biological Survey"
+            ]
+          },
+          {
+            "typeName": "series",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "seriesName": {
+                  "typeName": "seriesName",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Histoire du canada"
+                },
+                "seriesInformation": {
+                  "typeName": "seriesInformation",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Cette series est l'histoire generale du Canada"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "software",
+            "multiple": true,
+            "typeClass": "compound",
+            "value": [
+              {
+                "softwareName": {
+                  "typeName": "softwareName",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "Internat"
+                }
+              }
+            ]
+          },
+          {
+            "typeName": "relatedMaterial",
+            "multiple": true,
+            "typeClass": "primitive",
+            "value": [
+              "Raccoon Encyclopedia"
+            ]
+          },
+          {
+            "typeName": "relatedDatasets",
+            "multiple": true,
+            "typeClass": "primitive",
+            "value": [
+              "T-Virus Sample"
+            ]
+          },
+          {
+            "typeName": "otherReferences",
+            "multiple": true,
+            "typeClass": "primitive",
+            "value": [
+              "Not Applicable"
+            ]
+          },
+          {
+            "typeName": "dataSources",
+            "multiple": true,
+            "typeClass": "primitive",
+            "value": [
+              "Moi"
+            ]
+          },
+          {
+            "typeName": "originOfSources",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "NEST"
+          },
+          {
+            "typeName": "characteristicOfSources",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "Forbidden by Vampires"
+          },
+          {
+            "typeName": "accessToSources",
+            "multiple": false,
+            "typeClass": "primitive",
+            "value": "The Internet!"
+          }
+        ]
+      }
+    },
+    "files": [
+      {
+        "label": "ExcelExample_Corr_Reg.tab",
+        "restricted": false,
+        "version": 1,
+        "datasetVersionId": 10102,
+        "dataFile": {
+          "id": 62626,
+          "persistentId": "",
+          "filename": "ExcelExample_Corr_Reg.tab",
+          "contentType": "text/tab-separated-values",
+          "friendlyType": "Tab-Delimited",
+          "filesize": 77,
+          "storageIdentifier": "s3://dataverse:19b22fee248-5ef36d909e1c",
+          "originalFileFormat": "text/csv",
+          "originalFormatLabel": "Comma Separated Values",
+          "originalFileSize": 124,
+          "originalFileName": "ExcelExample_Corr_Reg.csv",
+          "UNF": "UNF:6:uzG3raBPZ6Y9W95lFd13yg==",
+          "rootDataFileId": -1,
+          "md5": "b6fc755e0b28f12fd95c54fd55f67132",
+          "checksum": {
+            "type": "MD5",
+            "value": "b6fc755e0b28f12fd95c54fd55f67132"
+          },
+          "tabularData": true,
+          "creationDate": "2025-12-15",
+          "publicationDate": "2026-01-14",
+          "lastUpdateTime": "2026-02-03T20:16:19Z",
+          "fileAccessRequest": true
+        }
+      }
+    ],
+    "citation": "Cevik,Zeynep, 2025, \"dataset3_Mar26_bulkupload3\", https://doi.org/10.80240/FK2/ZIJHDS, Borealis, V1, UNF:6:uzG3raBPZ6Y9W95lFd13yg== [fileUNF]"
+  }
+}
