@@ -1,10 +1,10 @@
 echo "🚀 Starting bulkupload_bash.sh"
-API_TOKEN="40fac471-f5ef-4408-88b3-0cf69e6a6f2c"
+API_TOKEN="YOUR API TOKEN"
 HOSTNAME="https://demo.borealisdata.ca"
-DATAVERSE_ALIAS="zeynepcevik"
-DIRECTORY="Datasets"
+DATAVERSE_ALIAS="YOUR COLLECTION ALIAS"
+DIRECTORY="YOUR LOCAL DIRECTORY"
 WAIT=0
-CONTACT_EMAIL="${CONTACT_EMAIL:-zeynep.cevik@utoronto.ca}"
+CONTACT_EMAIL="${CONTACT_EMAIL:-youremail@example.ca}"
 
 add_dataset_contact_email() {
     local metadata_file="$1"
