@@ -69,7 +69,7 @@ curl --version
 1. Clone this project:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/borealis-bulk-uploader.git
+git clone https://github.com/zbcevik/BulkLoadData_bash.git
 cd BulkLoadData_bash
 ```
 
