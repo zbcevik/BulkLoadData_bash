@@ -5,7 +5,7 @@
 #   CONTACT_EMAIL='you@domain.com' bash ContactInfo.sh Datasets/dataset1/metadata.json
 
 metadata_file="$1"
-contact_email="${CONTACT_EMAIL:-zeynep.cevik@utoronto.ca}"
+contact_email="${CONTACT_EMAIL:-youremail@example.ca}"
 
 if [ -z "$metadata_file" ]; then
   echo "Usage: $0 path/to/metadata.json"
