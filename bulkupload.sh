@@ -1,10 +1,15 @@
 echo "🚀 Starting bulkupload_bash.sh"
-API_TOKEN="YOUR API TOKEN"
-HOSTNAME="https://demo.borealisdata.ca"
-DATAVERSE_ALIAS="YOUR COLLECTION ALIAS"
-DIRECTORY="YOUR LOCAL DIRECTORY"
-WAIT=0
-CONTACT_EMAIL="${CONTACT_EMAIL:-youremail@example.ca}"
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_FILE="$SCRIPT_DIR/config.sh"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "❌ Config file not found: $CONFIG_FILE"
+  exit 1
+fi
+
+# shellcheck source=/dev/null
+source "$CONFIG_FILE"
 
 add_dataset_contact_email() {
     local metadata_file="$1"

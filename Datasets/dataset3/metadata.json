@@ -44,7 +44,7 @@
             "typeName": "title",
             "multiple": false,
             "typeClass": "primitive",
-            "value": "dataset3_Mar26_bulkupload3"
+            "value": "Mock dataset 3 - regional measurements"
           },
           {
             "typeName": "subtitle",
@@ -101,7 +101,7 @@
                   "typeName": "authorName",
                   "multiple": false,
                   "typeClass": "primitive",
-                  "value": "Cevik,Zeynep"
+                  "value": "Example,Researcher"
                 }
               }
             ]
@@ -116,19 +116,19 @@
                   "typeName": "datasetContactName",
                   "multiple": false,
                   "typeClass": "primitive",
-                  "value": "Cevik, Zeynep"
+                  "value": "Example Researcher"
                 },
                 "datasetContactAffiliation": {
                   "typeName": "datasetContactAffiliation",
                   "multiple": false,
                   "typeClass": "primitive",
-                  "value": "University of Toronto"
+                  "value": "Example University"
                 },
                 "datasetContactEmail": {
                   "typeName": "datasetContactEmail",
                   "multiple": false,
                   "typeClass": "primitive",
-                  "value": "zeynep.cevik@utoronto.ca"
+                  "value": "researcher@example.com"
                 }
               }
             ]
@@ -143,7 +143,7 @@
                   "typeName": "dsDescriptionValue",
                   "multiple": false,
                   "typeClass": "primitive",
-                  "value": "L'histoire du Canada est assez longue, mais relativement courte!"
+                  "value": "Synthetic regional measurements for testing bulk dataset uploads."
                 },
                 "dsDescriptionDate": {
                   "typeName": "dsDescriptionDate",
@@ -325,7 +325,7 @@
                   "typeName": "distributorAffiliation",
                   "multiple": false,
                   "typeClass": "primitive",
-                  "value": "University of Toronto"
+                  "value": "Example University"
                 },
                 "distributorAbbreviation": {
                   "typeName": "distributorAbbreviation",
@@ -505,18 +505,18 @@
           "filename": "ExcelExample_Corr_Reg.tab",
           "contentType": "text/tab-separated-values",
           "friendlyType": "Tab-Delimited",
-          "filesize": 77,
+          "filesize": 229,
           "storageIdentifier": "s3://dataverse:19b22fee248-5ef36d909e1c",
-          "originalFileFormat": "text/csv",
-          "originalFormatLabel": "Comma Separated Values",
-          "originalFileSize": 124,
-          "originalFileName": "ExcelExample_Corr_Reg.csv",
+          "originalFileFormat": "text/tab-separated-values",
+          "originalFormatLabel": "Tab-Delimited",
+          "originalFileSize": 229,
+          "originalFileName": "ExcelExample_Corr_Reg.tab",
           "UNF": "UNF:6:uzG3raBPZ6Y9W95lFd13yg==",
           "rootDataFileId": -1,
-          "md5": "b6fc755e0b28f12fd95c54fd55f67132",
+          "md5": "86b40079edd836eb3285fc16e75a1073",
           "checksum": {
             "type": "MD5",
-            "value": "b6fc755e0b28f12fd95c54fd55f67132"
+            "value": "86b40079edd836eb3285fc16e75a1073"
           },
           "tabularData": true,
           "creationDate": "2025-12-15",
@@ -526,6 +526,6 @@
         }
       }
     ],
-    "citation": "Cevik,Zeynep, 2025, \"dataset3_Mar26_bulkupload3\", https://doi.org/10.80240/FK2/ZIJHDS, Borealis, V1, UNF:6:uzG3raBPZ6Y9W95lFd13yg== [fileUNF]"
+    "citation": "Mock dataset 3, 2025, \"Mock dataset 3 - regional measurements\", Borealis, V1"
   }
 }

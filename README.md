@@ -1,7 +1,7 @@
 
 # Borealis Bulk Dataset Uploader
 
-A fully guided beginner-friendly reference for using `bulkupload_bash.sh` to upload multiple datasets into Borealis Dataverse.
+A beginner-friendly reference for using `bulkupload.sh` to upload multiple datasets into Borealis Dataverse.
 
 This Bash script does three main actions per dataset folder:
 1. Ensures each dataset JSON includes a contact email entry (`datasetContactEmail`).
@@ -12,7 +12,9 @@ This Bash script does three main actions per dataset folder:
 
 ## What this repository contains
 
-- `bulkupload_bash.sh`: main script that processes dataset folders in `Datasets/`.
+- `bulkupload.sh`: main script that processes dataset folders in the directory set in `config.sh`.
+- `config.sh`: API settings and the location of your dataset folders.
+- `ContactInfo.sh`: optional helper for adding a contact email to a metadata file.
 - `Datasets/`: each subfolder is one dataset package.
 
 ### Expected dataset directory layout (keep this figure):
@@ -33,6 +35,9 @@ Datasets/
 
 - `metadata.json` is used for dataset creation via API.
 - `files.zip` is uploaded after dataset creation.
+
+The included dataset folders are mock fixtures. Each archive contains a small synthetic
+`ExcelExample_Corr_Reg.tab` file, and each metadata file describes that matching payload.
 
 ---
 
@@ -73,35 +78,33 @@ git clone https://github.com/zbcevik/BulkLoadData_bash.git
 cd BulkLoadData_bash
 ```
 
+Alternatively, open the repository on GitHub, select **Code** > **Download ZIP**, extract the ZIP file, and open a terminal in the extracted project folder.
+
 2. Put your datasets under `Datasets/`:
 
 - One folder per dataset (e.g. `Datasets/dataset1/`).
 - Required files in each folder: `metadata.json`, `files.zip`.
 
-3. Open `bulkupload_bash.sh` with a text editor and set your API info:
+3. Open `config.sh` with a text editor and set your API info. Set `DIRECTORY` to the full path of the folder containing your dataset folders. For example, if the project is in your home folder:
 
 ```bash
-API_TOKEN="YOUR_API_TOKEN"
-HOSTNAME="https://demo.borealisdata.ca"               # or your Borealis host
-DATAVERSE_ALIAS="YOUR_DATAVERSE_ALIAS"
-DIRECTORY="Datasets"                                  # where dataset folders live
-WAIT=0
-CONTACT_EMAIL="your.contact@example.com"              # used for dataset contact field
+export API_TOKEN="YOUR_API_TOKEN"
+export HOSTNAME="https://demo.borealisdata.ca"        # or your Borealis host
+export DATAVERSE_ALIAS="YOUR_DATAVERSE_ALIAS"
+export DIRECTORY="$HOME/BulkLoadData_bash/Datasets"   # change this if the project is elsewhere
+export WAIT=0
+export CONTACT_EMAIL="your.contact@example.com"       # used for dataset contact field
 ```
 
-4. Make sure `bulkupload_bash.sh` is executable:
+The uploader automatically loads `config.sh` from the same folder as `bulkupload.sh`.
+
+4. From the project folder, run the script with Bash:
 
 ```bash
-chmod +x bulkupload_bash.sh
+bash ./bulkupload.sh
 ```
 
----
-
-## Run the script
-
-```bash
-./bulkupload_bash.sh
-```
+The script creates and uploads a dataset for every subfolder in `DIRECTORY`. This is a live upload, not a preview. Use a test Dataverse or a directory containing only one dataset folder for your first run; running it again can create duplicate datasets.
 
 What happens during run:
 - Script loops `for datasetDir in "$DIRECTORY"/*`.
@@ -126,7 +129,7 @@ What happens during run:
 
 ## Troubleshooting
 
-- `❌ Metadata file not found`: confirm `metadata.json` exists in each dataset folder.
+- `❌ Metadata file not found`: confirm `DIRECTORY` points to the parent folder containing the dataset folders, and that each folder contains `metadata.json`. Use a full path, such as `"$HOME/Downloads/Datasets"`.
 - `❌ No DOI found`: dataset creation failed (check API token, hostname, metadata validity).
 - `curl: (6) Could not resolve host`: wrong `HOSTNAME` or network issues.
 
