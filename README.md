@@ -1,13 +1,22 @@
 
-# Borealis Bulk Dataset Uploader
+# Borealis/Dataverse Bulk Dataset Uploader
 
-A beginner-friendly reference for using `bulkupload.sh` to upload multiple datasets into Borealis Dataverse.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Shell: Bash](https://img.shields.io/badge/Shell-Bash-4EAA25.svg)](https://www.gnu.org/software/bash/)
+
+A Bash tool for creating multiple datasets and uploading their files into a specified Borealis/Dataverse collection.
 
 This Bash script does three main actions per dataset folder:
-1. Ensures each dataset JSON includes a contact email entry (`datasetContactEmail`).
-2. Creates a dataset in your Dataverse using dataset metadata (without the `files` block).
-3. Uploads `files.zip` for that dataset using Dataverse SWORDv2 upload API.
+1. Adds the configured contact email to existing `datasetContact` entries that are missing `datasetContactEmail`. Existing email values are preserved.
+2. Creates a dataset using `metadata.json`, excluding `datasetVersion.files` from the creation request.
+3. Uploads `files.zip` to the created dataset using the Dataverse SWORDv2 API.
 
+The metadata must already contain the expected `datasetVersion.metadataBlocks.citation.fields` structure and a `datasetContact` entry. The script does not create a missing contact entry. It modifies `metadata.json` in place, so back up your dataset folders before running it.
+
+> [!CAUTION]
+> This script immediately creates datasets and uploads files.
+> It has no preview mode. Test with one dataset on
+> https://demo.borealisdata.ca first. Running it again can create duplicates.
 ---
 
 ## What this repository contains
@@ -17,7 +26,7 @@ This Bash script does three main actions per dataset folder:
 - `ContactInfo.sh`: optional helper for adding a contact email to a metadata file.
 - `Datasets/`: each subfolder is one dataset package.
 
-### Expected dataset directory layout (keep this figure):
+### Expected dataset directory layout:
 
 ```
 Datasets/
@@ -41,11 +50,14 @@ The included dataset folders are mock fixtures. Each archive contains a small sy
 
 ---
 
-## Prerequisites (very beginner-friendly)
+## Prerequisites 
 
-1. Linux/MacOS terminal access.
-2. Bash shell (default on most systems).
-3. Install `jq` and `curl`.
+- A Dataverse API token with permission to create datasets and upload files in the target collection.
+- The target collection’s alias.
+- A server supporting the Dataverse dataset-creation API and SWORDv2 upload endpoint.
+- Linux/MacOS terminal access.
+- Bash shell (default on most systems).
+- Install `jq` and `curl`.
 
 Ubuntu/Debian:
 
@@ -69,7 +81,7 @@ curl --version
 
 ---
 
-## Setup (best practice for new users)
+## Setup 
 
 1. Clone this project:
 
@@ -92,7 +104,6 @@ export API_TOKEN="YOUR_API_TOKEN"
 export HOSTNAME="https://demo.borealisdata.ca"        # or your Borealis host
 export DATAVERSE_ALIAS="YOUR_DATAVERSE_ALIAS"
 export DIRECTORY="$HOME/BulkLoadData_bash/Datasets"   # change this if the project is elsewhere
-export WAIT=0
 export CONTACT_EMAIL="your.contact@example.com"       # used for dataset contact field
 ```
 
@@ -108,7 +119,7 @@ The script creates and uploads a dataset for every subfolder in `DIRECTORY`. Thi
 
 What happens during run:
 - Script loops `for datasetDir in "$DIRECTORY"/*`.
-- Calls `add_dataset_contact_email` to add or reuse `datasetContactEmail` in metadata.
+- Calls `add_dataset_contact_email` to add a missing email to existing dataset-contact entries in `metadata.json`. Existing email values are preserved.
 - Sends `POST /api/dataverses/$DATAVERSE_ALIAS/datasets/?key=$API_TOKEN` with metadata minus `datasetVersion.files`.
 - Reads the response, extracts `DOI`.
 - If DOI exists, uploads `files.zip` to `/dvn/api/data-deposit/v1.1/swordv2/edit-media/study/$DOI`.
@@ -118,20 +129,25 @@ What happens during run:
 
 ## Post-run verification
 
-- If upload is successful, you should see output lines like:
-  - `Response: ...` (API JSON)
-  - `Extracted DOI: doi:10...`
-  - `Done with Datasets/dataset1`
+Open each created dataset in the Dataverse UI using its DOI and confirm:
 
-- Verify on the Dataverse UI using the DOI.
+- It belongs to the intended collection.
+- Its metadata is correct.
+- All expected files are attached.
 
 ---
 
+## Errors and recovery
+
+- Dataset creation and file upload are separate operations. If creation succeeds but file upload fails, the dataset may already exist. Inspect that dataset before rerunning the script, because rerunning can create a duplicate. The script does not automatically roll back created datasets.
+
+---
 ## Troubleshooting
 
 - `❌ Metadata file not found`: confirm `DIRECTORY` points to the parent folder containing the dataset folders, and that each folder contains `metadata.json`. Use a full path, such as `"$HOME/Downloads/Datasets"`.
 - `❌ No DOI found`: dataset creation failed (check API token, hostname, metadata validity).
 - `curl: (6) Could not resolve host`: wrong `HOSTNAME` or network issues.
+- Missing or unreadable `files.zip`: confirm the archive exists and is readable in the dataset folder. If a dataset was already created, inspect it before rerunning to avoid duplicates.
 
 ---
 
